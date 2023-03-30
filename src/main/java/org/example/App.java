@@ -1,10 +1,14 @@
 package org.example;
 
 
+import jakarta.persistence.criteria.CriteriaQuery;
 import org.example.model.Person;
 import org.hibernate.Session;
+import org.hibernate.query.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.List;
 
 
 /**
@@ -22,11 +26,15 @@ public class App {
 //        Начинаем транзакцию
             session.beginTransaction();
 
-            Person person = session.get(Person.class, 1);
+            CriteriaQuery<Person> pr = session.getCriteriaBuilder().createQuery(Person.class);
+            pr.from(Person.class);
 
-            System.out.println(person.getName());
-            System.out.println(person.getAge());
+            List<Person> people = session.createQuery(pr).getResultList();
 
+            //Выполняем транзакцию
+            for (Person person1 : people) {
+                System.out.println(person1);
+            }
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();

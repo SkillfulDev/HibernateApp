@@ -1,9 +1,6 @@
 package org.example.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 //@Entity обозначаем классы которые будут рабоать с Hibernate
 //@Table указываем название которое сопоставляеться нужной нам ДБ
@@ -16,13 +13,16 @@ public class Person {
     //@Column сопоставляем колонки в ДБ с нашими полями
     @Id
     @Column(name = "id")
+    //При автоматической генерации значения мы должны указать стратегию
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "age")
     private int age;
 
-    public Person(){}
+    public Person() {
+    }
 
     public int getId() {
         return id;
@@ -48,10 +48,13 @@ public class Person {
         this.age = age;
     }
 
-    public Person(int id, String name, int age) {
+    public Person(String name, int age) {
 
-        this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public String toString() {
+        return "Имя: " + this.name + "\nВозраст " + this.age;
     }
 }
