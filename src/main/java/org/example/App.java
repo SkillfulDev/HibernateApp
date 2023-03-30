@@ -1,12 +1,13 @@
 package org.example;
 
 
-import jakarta.persistence.criteria.CriteriaQuery;
+//import jakarta.persistence.criteria.CriteriaQuery;
 import org.example.model.Person;
 import org.hibernate.Session;
-import org.hibernate.query.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
+import org.hibernate.query.NativeQuery;
 
 import java.util.List;
 
@@ -25,16 +26,14 @@ public class App {
         try {
 //        Начинаем транзакцию
             session.beginTransaction();
-
-            CriteriaQuery<Person> pr = session.getCriteriaBuilder().createQuery(Person.class);
-            pr.from(Person.class);
-
-            List<Person> people = session.createQuery(pr).getResultList();
+            String hql = "select person from Person person where person.age  >20";
+            Query<Person> query = session.createQuery(hql, Person.class);
+            List<Person> people = query.list();
+            for (Person person : people) {
+                System.out.println(person);
+            }
 
             //Выполняем транзакцию
-            for (Person person1 : people) {
-                System.out.println(person1);
-            }
             session.getTransaction().commit();
         } finally {
             sessionFactory.close();
