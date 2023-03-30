@@ -26,12 +26,13 @@ public class App {
         try {
 //        Начинаем транзакцию
             session.beginTransaction();
-            String hql = "select person from Person person where person.age  >20";
-            Query<Person> query = session.createQuery(hql, Person.class);
-            List<Person> people = query.list();
-            for (Person person : people) {
-                System.out.println(person);
-            }
+
+            String hql = "update Person set age=2000 where age = 2200";
+
+            Query<Person> query1 = session.createNativeQuery(hql,Person.class);
+
+          query1.executeUpdate();
+
 
             //Выполняем транзакцию
             session.getTransaction().commit();
