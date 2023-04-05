@@ -3,7 +3,9 @@ package org.example;
 
 //import jakarta.persistence.criteria.CriteriaQuery;
 
-import org.example.model.Item;
+//import org.example.model.Item;
+
+import org.example.model.Passport;
 import org.example.model.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -19,7 +21,9 @@ public class App {
     public static void main(String[] args) {
         // Для начала мы должны подключить наш файл Hibernate.properties, для этого используем
         // класс Configuration, он автоматически подключается к нашему файлу
-        Configuration configuration = new Configuration().addAnnotatedClass(Person.class).addAnnotatedClass(Item.class);
+        Configuration configuration = new Configuration().
+                addAnnotatedClass(Person.class).
+                addAnnotatedClass(Passport.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         //Создаем сессию для работы с Hibernate
         Session session = sessionFactory.getCurrentSession();
@@ -27,9 +31,15 @@ public class App {
 //        Начинаем транзакцию
             session.beginTransaction();
 
-            Person person = session.get(Person.class, 1);
+//            Passport passport = new Passport(324433);
+//            Person person = new Person("Jonhy Wu", 19, passport);
+//            person.setPassport(passport);
+//            passport.setPerson(person);
+//            session.persist(person);
 
-            System.out.println(person.getItem());
+
+            System.out.println(session.get(Passport.class, 1).getPerson());
+
 
 //            String hql = "update Person set age=2000 where age = 2200";
 //

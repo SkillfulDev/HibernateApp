@@ -15,8 +15,14 @@ public class Person {
     private String name;
     @Column(name = "age")
     private int age;
-    @OneToMany(mappedBy = "owner")
-    private List<Item> item;
+
+    @OneToOne(mappedBy = "person",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+
+    private Passport passport;
+
+
+//    @OneToMany(mappedBy = "owner")
+//    private List<Item> item;
 
     public Person() {
 
@@ -25,6 +31,7 @@ public class Person {
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
+
     }
 
     public int getId() {
@@ -51,12 +58,22 @@ public class Person {
         this.age = age;
     }
 
-    public List<Item> getItem() {
-        return item;
+//    public List<Item> getItem() {
+//        return item;
+//    }
+//
+//    public void setItem(List<Item> item) {
+//        this.item = item;
+//    }
+
+
+    public Passport getPassport() {
+        return passport;
     }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+        passport.setPerson(this);
     }
 
     @Override
