@@ -2,36 +2,30 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
-@Table(name = "Person")
-public class Person {
+@Table(name = "director")
+public class Director {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "age")
     private int age;
 
-    @OneToOne(mappedBy = "person",cascade = {CascadeType.PERSIST,CascadeType.REMOVE,CascadeType.REFRESH})
+    @OneToOne(mappedBy = "director",cascade = CascadeType.PERSIST)
+    private School school;
 
-    private Passport passport;
-
-
-//    @OneToMany(mappedBy = "owner")
-//    private List<Item> item;
-
-    public Person() {
+    public Director (){
 
     }
 
-    public Person(String name, int age) {
+    public Director(String name, int age) {
         this.name = name;
         this.age = age;
-
     }
 
     public int getId() {
@@ -58,30 +52,23 @@ public class Person {
         this.age = age;
     }
 
-//    public List<Item> getItem() {
-//        return item;
-//    }
-//
-//    public void setItem(List<Item> item) {
-//        this.item = item;
-//    }
-
-
-    public Passport getPassport() {
-        return passport;
+    public School getSchool() {
+        return school;
     }
 
-    public void setPassport(Passport passport) {
-        this.passport = passport;
-        passport.setPerson(this);
+    public void setSchool(School school) {
+        this.school = school;
+        school.setDirector(this);
+
     }
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "Director{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", school=" + school +
                 '}';
     }
 }

@@ -5,8 +5,10 @@ package org.example;
 
 //import org.example.model.Item;
 
+import org.example.model.Director;
 import org.example.model.Passport;
 import org.example.model.Person;
+import org.example.model.School;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -22,8 +24,8 @@ public class App {
         // Для начала мы должны подключить наш файл Hibernate.properties, для этого используем
         // класс Configuration, он автоматически подключается к нашему файлу
         Configuration configuration = new Configuration().
-                addAnnotatedClass(Person.class).
-                addAnnotatedClass(Passport.class);
+                addAnnotatedClass(Director.class).
+                addAnnotatedClass(School.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         //Создаем сессию для работы с Hibernate
         Session session = sessionFactory.getCurrentSession();
@@ -31,21 +33,10 @@ public class App {
 //        Начинаем транзакцию
             session.beginTransaction();
 
-//            Passport passport = new Passport(324433);
-//            Person person = new Person("Jonhy Wu", 19, passport);
-//            person.setPassport(passport);
-//            passport.setPerson(person);
-//            session.persist(person);
+            School school = session.get(School.class, 1);
+            Director director= session.get(School.class, 1).getDirector();
 
-
-            System.out.println(session.get(Passport.class, 1).getPerson());
-
-
-//            String hql = "update Person set age=2000 where age = 2200";
-//
-//            Query<Person> query1 = session.createNativeQuery(hql, Person.class);
-//
-//            query1.executeUpdate();
+           director.getSchool().setId(3);
 
 
             //Выполняем транзакцию
@@ -56,3 +47,8 @@ public class App {
 
     }
 }
+//           String hql = "update Person set age=2000 where age = 2200";
+//
+//            Query<Person> query1 = session.createNativeQuery(hql, Person.class);
+//
+//            query1.executeUpdate();
