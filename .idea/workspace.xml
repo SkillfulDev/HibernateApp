@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c41c2ddf-ad33-4410-a45e-42abb397b031" name="Changes" comment="add_OneToOne">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Director.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/School.java" afterDir="false" />
+    <list default="true" id="c41c2ddf-ad33-4410-a45e-42abb397b031" name="Changes" comment="add_OneToOneHW">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Actor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Movie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/model/Person.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,8 @@
       <workItem from="1680158294494" duration="2036000" />
       <workItem from="1680163295277" duration="9903000" />
       <workItem from="1680424638022" duration="6352000" />
-      <workItem from="1680676779657" duration="12286000" />
+      <workItem from="1680676779657" duration="13219000" />
+      <workItem from="1680847867494" duration="7417000" />
     </task>
     <task id="LOCAL-00001" summary="add_config">
       <created>1680093508853</created>
@@ -127,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680682636784</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add_OneToOneHW">
+      <created>1680700537175</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680700537175</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +157,7 @@
     <MESSAGE value="add_HQL" />
     <MESSAGE value="add_correctHQL" />
     <MESSAGE value="add_OneToOne" />
-    <option name="LAST_COMMIT_MESSAGE" value="add_OneToOne" />
+    <MESSAGE value="add_OneToOneHW" />
+    <option name="LAST_COMMIT_MESSAGE" value="add_OneToOneHW" />
   </component>
 </project>

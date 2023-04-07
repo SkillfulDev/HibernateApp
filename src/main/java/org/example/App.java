@@ -5,14 +5,14 @@ package org.example;
 
 //import org.example.model.Item;
 
-import org.example.model.Director;
-import org.example.model.Passport;
-import org.example.model.Person;
-import org.example.model.School;
+import org.example.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -24,25 +24,21 @@ public class App {
         // Для начала мы должны подключить наш файл Hibernate.properties, для этого используем
         // класс Configuration, он автоматически подключается к нашему файлу
         Configuration configuration = new Configuration().
-                addAnnotatedClass(Director.class).
-                addAnnotatedClass(School.class);
+                addAnnotatedClass(Actor.class).
+                addAnnotatedClass(Movie.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         //Создаем сессию для работы с Hibernate
         Session session = sessionFactory.getCurrentSession();
-        try {
+        try (sessionFactory) {
 //        Начинаем транзакцию
             session.beginTransaction();
-
-            School school = session.get(School.class, 1);
-            Director director= session.get(School.class, 1).getDirector();
-
-           director.getSchool().setId(3);
-
+            Movie movie = session.get(Movie.class, 1);
+            Actor actor = session.get(Actor.class,1);
+            actor.getMovies().remove(movie);
+            movie.getActors().remove(actor);
 
             //Выполняем транзакцию
             session.getTransaction().commit();
-        } finally {
-            sessionFactory.close();
         }
 
     }
