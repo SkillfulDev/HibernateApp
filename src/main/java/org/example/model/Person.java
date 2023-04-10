@@ -15,7 +15,7 @@ public class Person {
     private String name;
     @Column(name = "age")
     private int age;
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private List<Item> item;
 
     public Person() {
@@ -61,10 +61,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Name: "+name+" age: " +age;
     }
 }

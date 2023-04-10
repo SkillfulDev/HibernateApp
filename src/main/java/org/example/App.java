@@ -22,24 +22,25 @@ public class App {
         Configuration configuration = new Configuration().addAnnotatedClass(Person.class).addAnnotatedClass(Item.class);
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         //Создаем сессию для работы с Hibernate
-        Session session = sessionFactory.getCurrentSession();
-        try {
+        try{
+            Session session = sessionFactory.getCurrentSession();
 //        Начинаем транзакцию
             session.beginTransaction();
 
             Person person = session.get(Person.class, 1);
+            System.out.println("Got the man");
+//            System.out.println(person.getItem());
 
-            System.out.println(person.getItem());
 
 //            String hql = "update Person set age=2000 where age = 2200";
-//
 //            Query<Person> query1 = session.createNativeQuery(hql, Person.class);
-//
 //            query1.executeUpdate();
 
 
             //Выполняем транзакцию
             session.getTransaction().commit();
+
+            System.out.println(person.getItem());
         } finally {
             sessionFactory.close();
         }
